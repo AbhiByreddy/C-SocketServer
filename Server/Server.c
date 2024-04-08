@@ -98,7 +98,7 @@ int main(int argc, char *argv[]){
 		printf("%d", newsockfd);
 
 
-		if(pthread_create(&l[i],NULL ,socketListener, (void *) newsockfd) == -1){
+		if(pthread_create(&l[i],NULL ,socketListener, (void *) &newsockfd) == -1){
             perror("thread error");
             exit(-1);
 		}
@@ -107,4 +107,3 @@ int main(int argc, char *argv[]){
 	}
 
 }
-
