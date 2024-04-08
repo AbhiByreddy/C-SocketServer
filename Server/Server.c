@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
-#define SERV_TCP_PORT 23 //server's default port number
+#define SERV_TCP_PORT 4000 //server's default port number
 #define MAX_SIZE 5000
 int *socketList;
 
