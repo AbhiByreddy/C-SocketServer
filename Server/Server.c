@@ -1,13 +1,17 @@
-#import stdio.h
+
+#include <string.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include<sys/socket.h>
+#include<netinet/tcp.h>
+#include<arpa/inet.h>
+#include<stdlib.h>
+#include<unistd.h>
 
 int main()
 {
 
-<<<<<<< HEAD
-    printf("Hello, World! Travis is the greatest\n");
-=======
     printf("Hello, World! Tsiydgfiaysfgaserfgd\n");
->>>>>>> 92c67c553dacd8b3419d7f4fc5ae5b3860c32a67
     return 0;
 
 } // end of main
