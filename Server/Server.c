@@ -15,18 +15,18 @@ int *socketList;
 
 void *socketListener(void *socketdesc){
     int *l = (int *)socketdesc;
-    char info[5000] // max char count is 5000
+    char info[5000]; // max char count is 5000
     size_t f;
     while(1){
-        f = read(l, info, sizeof(info)); //tries to read from certain socket
+        f = read(*l, info, sizeof(info)); //tries to read from certain socket
         if(f > 0){ // if f > 0 it means that it read something from the socket connection, this means we should send read string to every client
             info[f] = 0; // 0 endofstring
             for(int i = 0; i < 100; i++){ // iterating through array of socket connections
-                if(socketList[i] != NULL){ //if socketList is NULL, the rest of the list is empty as it is not populated
+                if(socketList[i] != 0){ //if socketList is 0, the rest of the list is empty as it is not populated
 
                     write(socketList[i],info, sizeof(info)); //write the string to each socket
 
-                }else{ //break loop, waste of time to loop thru NULL array
+                }else{ //break loop, waste of time to loop thru 0 array
                 break;}
             }
         }
@@ -35,7 +35,7 @@ void *socketListener(void *socketdesc){
 }
 
 int main(int argc, char *argv[]){
-	int sockfd, newsockfd, clilen, counter; //counter will keep track of index in socketList
+	int sockfd, newsockfd, clilen, counter,i; //counter will keep track of index in socketList
     struct sockaddr_in cli_addr, serv_addr;
     //int *socketList = NULL;
     int port;
@@ -96,9 +96,9 @@ int main(int argc, char *argv[]){
 
 		socketList[i] = newsockfd;
 		printf("%d", newsockfd);
-		s = pthread_create(&l[i],NULL ,socketListener,newsockfd);
 
-		if(s == -1){
+
+		if(pthread_create(&l[i],NULL ,socketListener, (void *) newsockfd) == -1){
             perror("thread error");
             exit(-1);
 		}
