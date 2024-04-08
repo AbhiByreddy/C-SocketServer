@@ -22,7 +22,7 @@ void *socketListener(void *socketdesc){
         if(f > 0){ // if f > 0 it means that it read something from the socket connection, this means we should send read string to every client
             info[f] = 0; // 0 endofstring
             for(int i = 0; i < 100; i++){ // iterating through array of socket connections
-                if(socketList[i] != NULL{ //if socketList is NULL, the rest of the list is empty as it is not populated
+                if(socketList[i] != NULL){ //if socketList is NULL, the rest of the list is empty as it is not populated
 
                     write(socketList[i],info, sizeof(info)); //write the string to each socket
 
