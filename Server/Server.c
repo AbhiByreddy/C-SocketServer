@@ -35,12 +35,13 @@ void *socketListener(void *socketdesc){
 }
 
 int main(int argc, char *argv[]){
-	int sockfd, newsockfd, clilen, counter,i; //counter will keep track of index in socketList
+	int sockfd, newsockfd, clilen, counter; //counter will keep track of index in socketList
+	int i = 0;
     struct sockaddr_in cli_addr, serv_addr;
     //int *socketList = NULL;
     int port;
     pthread_t l[100];
-    socketList = (int *)malloc(100 * (sizeof(int))); // an array of 100 integers established by malloc
+    socketList = (int *)calloc(100 , (sizeof(int))); // an array of 100 integers established by malloc
     if(socketList == NULL){ // error checking
        perror("Malloc error");
        exit(1);
@@ -107,3 +108,4 @@ int main(int argc, char *argv[]){
 	}
 
 }
+
